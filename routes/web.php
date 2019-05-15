@@ -16,9 +16,10 @@ Route::get('/', function () {
 });
 
 
-Route::get('/admin', function(){
+Route::get('/admin',['middleware'=>'role', function(){
 	return view('admin/admin');
-});
+}]);
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

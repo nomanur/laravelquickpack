@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -41,5 +42,12 @@ class User extends Authenticatable
 
         return $this->belongsTo('App\Role');
 
+    }
+
+    public function isAdmin(){
+        if (Auth::user()->role->name == 'administrator' && Auth::user()->is_active == 1) {
+            return true;
+        }
+            return false;
     }
 }
