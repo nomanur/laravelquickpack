@@ -15,6 +15,7 @@
       <th scope="col">Status</th>
       <th scope="col">Created at</th>
       <th scope="col">Updated at</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -28,6 +29,13 @@
       <td>{{$user->is_active == 1 ? 'Active' : 'Inactive'}}</td>
       <td>{{$user->created_at->diffForHumans()}}</td>
       <td>{{$user->updated_at->diffForHumans()}}</td>
+      <td><a href="#" class="btn btn-primary btn-icon-split">
+          <span class="icon text-white-50">
+             <i class="fas fa-edit"></i>
+          </span>
+          <span class="text">Edit</span>
+          </a>
+      </td>
     </tr>
     
     @endforeach
