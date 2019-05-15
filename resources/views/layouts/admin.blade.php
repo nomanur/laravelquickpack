@@ -333,7 +333,7 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          @if(Request::url() == route('admin'))
+        @if(Route::is('admin'))
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
               <h1 class="h3 mb-0 text-gray-800"><i class="fab fa-dashcube"></i> Dashboard</h1>
           @else
