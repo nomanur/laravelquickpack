@@ -15,10 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('logout', 'Auth\LoginController@logout');
 
 Route::get('/admin',['middleware'=>'role', function(){
 	return view('admin.index');
-}]);
+}])->name('admin');
 
 Auth::routes();
 

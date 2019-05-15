@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    <i class="fa fa-users"></i>Users
+@endsection
+
 @section('content')
 
 <table class="table table-striped " style="color: #000;">
