@@ -1,16 +1,20 @@
 @extends('layouts.admin')
 @section('title')
-<i class="fab fa-creative-commons-by"></i>Create User
+	<i class="fab fa-creative-commons-by"></i>Create User -
+	@include('message', [
+		'message'=>'This is create page',
+	])
 @endsection
+
+
 @section('content')
 <div class="container">
 	<div class="row">
 		<div class="col-lg-3">
-			<img class="rounded-circle" src="http://placehold.it/150x150">
-			
+			<img class="rounded-circle" src="http://placehold.it/150x150">			
 		</div>
-		<!-- form -->
 		
+		<!-- form -->
 		<div class="col-lg-6">
 			{!! Form::open(['method'=>'POST', 'action'=>'AdminUsersController@store', 'files'=>true]) !!}
 			@csrf
@@ -26,7 +30,7 @@
 			</div>
 			<div class="form-group">
 				{!! Form::label('role_id', 'Roles') !!}
-				{!! Form::select('role_id',[''=>'Select Options'] + $role, null, ['class'=>'form-control']) !!}
+				{!! Form::select('role_id',[''=>'Select Options'] + array_map('ucfirst',$role), null, ['class'=>'form-control']) !!}
 				@include('inc.error', ['field' => 'role_id'])
 			</div>
 			<div class="form-group">
@@ -61,11 +65,14 @@
 				<img src="http://placehold.it/400x200" class="card-img-top" alt="...">
 				<div class="card-body">
 					<h5 class="card-title">Tips</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					<p class="card-text">
+						<ul>
+							<li><b>Name</b> cannot be less than 2 characters</li>
+							<li><b>Password</b> cannot be less than 6 characters</li>
+						</ul>
+					</p>
 				</div>
-			</div>
-
-			
+			</div>	
 		</div>
 	</div>
 </div>

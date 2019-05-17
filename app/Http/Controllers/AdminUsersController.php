@@ -6,6 +6,7 @@ use App\Http\Requests\UsersRequest;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class AdminUsersController extends Controller
 {
