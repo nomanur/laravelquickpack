@@ -42,7 +42,11 @@ class AdminUsersController extends Controller
     public function store(UsersRequest $request)
     {
 
-       return $request->all();
+        /*if (User::whereEmail($request->email)->exists()) {
+            return 'exist';
+        }*/
+       
+        return $request->all();
  
     }
 

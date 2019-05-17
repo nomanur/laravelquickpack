@@ -26,11 +26,12 @@ class UsersRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|min:2',
-            'email'=>'required',
+            'name'=>'required|alpha_dash|min:2',
+            'email'=>'required|email|unique:users',
             'role_id'=>'required',
             'is_active'=>'required',
             'password'=>'required|min:6',
+            'password_confirm'=>'required|same:password',
             'activator'=>'required',
         ];
     }
@@ -39,9 +40,12 @@ class UsersRequest extends FormRequest
     {
         return [
             'name.required' => 'Name field is required.',
+            'name.alpha_dash' => 'Name only contains alphabet.',
             'name.min'=>'Name cannot be less than 2 charecters.',
             'email.required'  => 'Email field is required.',
+            'email.email'  => 'Email is not valid.',
             'password.min'=>'Password cannto be less than 6 charecters.',
+            'password_confirm.same'=>'Password and Password confirm didn\'t match',
             'activator.required'=>'Please click to agree.',
         ];
     }

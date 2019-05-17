@@ -26,7 +26,7 @@
 			</div>
 			<div class="form-group">
 				{!! Form::label('email', 'email') !!}
-				{!! Form::email('email', null, ['class'=>'form-control']) !!}
+				{!! Form::text('email', null, ['class'=>'form-control']) !!}
 				@include('inc.error', ['field' => 'email'])
 			</div>
 			<div class="form-group">
@@ -48,6 +48,11 @@
 				{!! Form::label('password', 'Password') !!}
 				{!! Form::password('password', ['class'=>'form-control']) !!}
 				@include('inc.error', ['field' => 'password'])
+			</div>
+			<div class="form-group">
+				{!! Form::label('password_confirm', 'Confirm Password') !!}
+				{!! Form::password('password_confirm', ['class'=>'form-control']) !!}
+				@include('inc.error', ['field' => 'password_confirm'])
 			</div>
 			<hr>
 				<div class="form-group">
