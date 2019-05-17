@@ -1,9 +1,10 @@
 @extends('layouts.admin')
 @section('title')
-	<i class="fab fa-creative-commons-by"></i>Create User -
+	<i class="fab fa-creative-commons-by"></i>Create User 
 	@include('message', [
-		'message'=>'This is create page',
+		'message'=>'',
 	])
+	
 @endsection
 
 
@@ -35,7 +36,7 @@
 			</div>
 			<div class="form-group">
 				{!! Form::label('is_active', 'Status') !!}
-				{!! Form::select('is_active', array(1 => 'Active', 0 => 'Not Active'), 0, ['class'=>'form-control']) !!}
+				{!! Form::select('is_active', array(1 => 'Active', 0 => 'Not Active'), 1, ['class'=>'form-control']) !!}
 				@include('inc.error', ['field' => 'is_active'])
 			</div>
 			<div class="form-group">
@@ -48,6 +49,26 @@
 				{!! Form::password('password', ['class'=>'form-control']) !!}
 				@include('inc.error', ['field' => 'password'])
 			</div>
+			<hr>
+				<div class="form-group">
+					{!! Form::label('', 'Uncheck the off Day') !!}
+					<br>
+					{!! Form::label('saturday', 'saturday') !!}
+					{!! Form::checkbox('day[sat]', 0, ['class'=>'form-control']) !!}
+					{!! Form::label('sunday', 'sunday') !!}
+					{!! Form::checkbox('day[sun]', 1, ['class'=>'form-control']) !!}
+					{!! Form::label('monday', 'monday') !!}
+					{!! Form::checkbox('day[mon]', 2, ['class'=>'form-control']) !!}
+					{!! Form::label('tuesday', 'tuesday') !!}
+					{!! Form::checkbox('day[tue]', 3, ['class'=>'form-control']) !!}
+					{!! Form::label('wednesday', 'wednesday') !!}
+					{!! Form::checkbox('day[wed]', 4, ['class'=>'form-control']) !!}
+					{!! Form::label('thursday', 'thursday') !!}
+					{!! Form::checkbox('day[thu]', 5, ['class'=>'form-control']) !!}
+					{!! Form::label('friday', 'friday') !!}
+					{!! Form::checkbox('day[fri]', 6, ['class'=>'form-control']) !!}
+				</div>
+				<hr>
 			<div class="form-group">
 				{!! Form::checkbox('activator',null,null, ['class'=>'']) !!}
 				{!! Form::label('activator', 'Click here to agree') !!}

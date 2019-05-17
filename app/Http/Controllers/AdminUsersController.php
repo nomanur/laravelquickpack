@@ -43,8 +43,7 @@ class AdminUsersController extends Controller
     {
 
        return $request->all();
-
-        
+ 
     }
 
 

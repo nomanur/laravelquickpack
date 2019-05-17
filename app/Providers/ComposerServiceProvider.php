@@ -39,10 +39,12 @@ class ComposerServiceProvider extends ServiceProvider
         //to send message to all the pages
         view()->composer('message', function ($view) {
             $with = array_merge([
-                        'message' => 'This is a message on some page'
+                        'message' => ''
                     ], $view->getData());
-            $view->with($with);
-        });
 
+            if (!empty($with['message'])) {
+                $view->with($with);
+            }
+        });
     }
 }
