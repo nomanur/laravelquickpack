@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UsersRequest;
 use App\Role;
 use App\User;
+use App\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Session;
 
 class AdminUsersController extends Controller
 {
@@ -42,12 +44,30 @@ class AdminUsersController extends Controller
     public function store(UsersRequest $request)
     {
 
-        /*if (User::whereEmail($request->email)->exists()) {
-            return 'exist';
-        }*/
-       
-        return $request->all();
- 
+       $input = $request->except('day', 'activator', 'password_confirm');
+
+       $input['password'] = bcrypt($request->password);
+      
+
+       if ($file = $request->file('photo_id')) {
+           
+           $name = time() . $file->getClientOriginalName();
+
+           $file->move('images', $name);
+
+           $photo = Photo::create(['file'=>$name]);
+
+           $input['photo_id']=$photo->id;
+       }
+
+      User::create($input);
+
+      $user = User::orderBy('created_at', 'desc')->first();
+
+      Session::flash('user_created', 'User' . $user->name . 'created Successfully');
+
+      return redirect('admin/users'); 
+
     }
 
 
