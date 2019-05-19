@@ -18,9 +18,19 @@ class AdminUsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        $working_days = array(
+                                '0'=>'sat',
+                                '1'=>'sun',
+                                '2'=>'mon',
+                                '3'=>'tue',
+                                '4'=>'wed',
+                                '5'=>'thu',
+                                '6'=>'fri',
+                          );
         $users = User::all();
-        return view('admin.users.index', compact('users'));
+        $today = strToLower(date('D'));
+        return view('admin.users.index', compact('users', 'today', 'working_days'));
     }
 
     /**
@@ -44,9 +54,14 @@ class AdminUsersController extends Controller
     public function store(UsersRequest $request)
     {
     
-       $input = $request->except('day', 'activator', 'password_confirm');
-
+       $input = $request->except('activator', 'password_confirm');
+      
        $input['password'] = bcrypt($request->password);
+
+       $days = $request->day;
+       $day = implode(',', $days);
+
+       $input['day'] = $day;
       
        if ($file = $request->file('photo_id')) {
            
@@ -90,10 +105,29 @@ class AdminUsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {   
+        //$working_days = array( 0 => 'Mon', 1 => 'Tue', 2 => 'Wed', 
+          //             3 => 'Thu', 4 => 'Fri', 5 => 'Sat', 6 => 'Sun' );
+
+        $working_days = array(
+                                '0'=>'sat',
+                                '1'=>'sun',
+                                '2'=>'mon',
+                                '3'=>'tue',
+                                '4'=>'wed',
+                                '5'=>'thu',
+                                '6'=>'fri',
+                          );
         $user = User::findOrFail($id);
+          $saved_working_days = array_flip(explode(',' , $user->day));
+        
+
+
+        
+
+
         $role = Role::pluck('name', 'id')->all();
-        return view('admin.users.edit', compact('role', 'user'));
+        return view('admin.users.edit', compact('role', 'user','working_days', 'saved_working_days'));
     }
 
     /**

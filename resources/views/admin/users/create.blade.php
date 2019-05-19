@@ -63,19 +63,19 @@
 					{!! Form::label('', 'Uncheck the off Day') !!}
 					<br>
 					{!! Form::label('saturday', 'saturday') !!}
-					{!! Form::checkbox('day[sat]', 0, ['class'=>'form-control subject-list']) !!}
+					{!! Form::checkbox('day[sat]', 'sat', ['class'=>'form-control subject-list']) !!}
 					{!! Form::label('sunday', 'sunday') !!}
-					{!! Form::checkbox('day[sun]', 1, ['class'=>'form-control subject-list']) !!}
+					{!! Form::checkbox('day[sun]', 'sun', ['class'=>'form-control subject-list']) !!}
 					{!! Form::label('monday', 'monday') !!}
-					{!! Form::checkbox('day[mon]', 2, ['class'=>'form-control subject-list']) !!}
+					{!! Form::checkbox('day[mon]', 'mon', ['class'=>'form-control subject-list']) !!}
 					{!! Form::label('tuesday', 'tuesday') !!}
-					{!! Form::checkbox('day[tue]', 3, ['class'=>'form-control subject-list']) !!}
+					{!! Form::checkbox('day[tue]', 'tue', ['class'=>'form-control subject-list']) !!}
 					{!! Form::label('wednesday', 'wednesday') !!}
-					{!! Form::checkbox('day[wed]', 4, ['class'=>'form-control subject-list']) !!}
+					{!! Form::checkbox('day[wed]', 'wed', ['class'=>'form-control subject-list']) !!}
 					{!! Form::label('thursday', 'thursday') !!}
-					{!! Form::checkbox('day[thu]', 5, ['class'=>'form-control subject-list']) !!}
+					{!! Form::checkbox('day[thu]', 'thu', ['class'=>'form-control subject-list']) !!}
 					{!! Form::label('friday', 'friday') !!}
-					{!! Form::checkbox('day[fri]', 6, ['class'=>'form-control subject-list']) !!}
+					{!! Form::checkbox('day[fri]', 'fri', ['class'=>'form-control subject-list']) !!}
 				</div>
 				<hr>
 			<div class="form-group">

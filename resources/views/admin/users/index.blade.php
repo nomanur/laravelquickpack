@@ -18,6 +18,9 @@
       <th scope="col">Email</th>
       <th scope="col">Role</th>
       <th scope="col">Status</th>
+      <th scope="col">Holiday</th>
+      
+      <th scope="col">Today's Status</th>
       <th scope="col">Created at</th>
       <th scope="col">Updated at</th>
       <th scope="col"></th>
@@ -33,6 +36,16 @@
       <td>{{$user->email}}</td>
       <td>{{ucfirst($user->role->name)}}</td>
       <td>{{$user->is_active == 1 ? 'Active' : 'Inactive'}}</td>
+      
+           <?php
+              $offday = (explode(',', $user->day));
+              $diff = array_diff($working_days, $offday);
+              $imp = implode(', ', $diff);
+            ?>
+            <td>{{($imp)}}</td>    
+          <td>
+             {{(stripos($imp, $today) !== false) ? 'Holiday' : 'Working day'}}
+          </td>
       <td>{{$user->created_at->diffForHumans()}}</td>
       <td>{{$user->updated_at->diffForHumans()}}</td>
       <td><a href="{{route('users.edit', $user->id)}}" class="btn btn-primary btn-icon-split">

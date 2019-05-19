@@ -58,24 +58,11 @@
 				@include('inc.error', ['field' => 'password_confirm'])
 			</div>
 			<hr>
-			<div class="form-group">
-				{!! Form::label('', 'Uncheck the off Day') !!}
-				<br>
-				{!! Form::label('saturday', 'saturday') !!}
-				{!! Form::checkbox('day[sat]', 0, ['class'=>'form-control subject-list']) !!}
-				{!! Form::label('sunday', 'sunday') !!}
-				{!! Form::checkbox('day[sun]', 1, ['class'=>'form-control subject-list']) !!}
-				{!! Form::label('monday', 'monday') !!}
-				{!! Form::checkbox('day[mon]', 2, ['class'=>'form-control subject-list']) !!}
-				{!! Form::label('tuesday', 'tuesday') !!}
-				{!! Form::checkbox('day[tue]', 3, ['class'=>'form-control subject-list']) !!}
-				{!! Form::label('wednesday', 'wednesday') !!}
-				{!! Form::checkbox('day[wed]', 4, ['class'=>'form-control subject-list']) !!}
-				{!! Form::label('thursday', 'thursday') !!}
-				{!! Form::checkbox('day[thu]', 5, ['class'=>'form-control subject-list']) !!}
-				{!! Form::label('friday', 'friday') !!}
-				{!! Form::checkbox('day[fri]', 6, ['class'=>'form-control subject-list']) !!}
-			</div>
+
+			@foreach ( $working_days as $i => $working_day )
+				{!! Form::checkbox( 'working_days[]',$working_day,in_array($i,$saved_working_days),['class' => '', 'id' => $working_day]) !!}
+				{!! Form::label($working_day,  ucfirst($working_day)) !!}
+			@endforeach
 			<hr>
 			<div class="form-group">
 				{!! Form::checkbox('activator',null,null, ['class'=>'']) !!}
@@ -88,9 +75,14 @@
 			{!! Form::close() !!}
 		</div>
 		
+
+
+
+
+
 		<!-- form -->
 		<div class="col-lg-3">
-			<div class="card" style="width: 15rem;">
+			<!-- <div class="card" style="width: 15rem;">
 				<img src="http://placehold.it/400x200" class="card-img-top" alt="...">
 				<div class="card-body">
 					<h5 class="card-title">Tips</h5>
@@ -101,7 +93,17 @@
 						</ul>
 					</p>
 				</div>
-			</div>
+			</div> -->
+
+			@foreach($working_days as $i => $working_day)
+				
+				
+				
+				@if(in_array($i, $saved_working_days))
+						{{$i}}
+
+				@endif
+			@endforeach
 		</div>
 	</div>
 </div>
