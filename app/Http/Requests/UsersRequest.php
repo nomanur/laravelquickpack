@@ -32,6 +32,7 @@ class UsersRequest extends FormRequest
             'is_active'=>'required',
             'password'=>'required|min:6',
             'password_confirm'=>'required|same:password',
+            'gender'=>'required',
             'activator'=>'required',
         ];
     }
@@ -46,6 +47,7 @@ class UsersRequest extends FormRequest
             'email.email'  => 'Email is not valid.',
             'password.min'=>'Password cannto be less than 6 charecters.',
             'password_confirm.same'=>'Password and Password confirm didn\'t match',
+            'gender.required'=>'Please select one gender',
             'activator.required'=>'Please click to agree.',
         ];
     }

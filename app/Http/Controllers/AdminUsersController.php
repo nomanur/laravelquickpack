@@ -30,7 +30,7 @@ class AdminUsersController extends Controller
      */
     public function create()
     {
-        
+       
         $role = Role::pluck('name', 'id')->all();
         return view('admin.users.create', compact('role'));
     }
@@ -43,12 +43,11 @@ class AdminUsersController extends Controller
      */
     public function store(UsersRequest $request)
     {
-
-       $input = $request->except('day', 'activator', 'password_confirm');
+        
+       $input = $request->except('day', 'activator', 'password_confirm', 'gender');
 
        $input['password'] = bcrypt($request->password);
       
-
        if ($file = $request->file('photo_id')) {
            
            $name = time() . $file->getClientOriginalName();
@@ -64,7 +63,7 @@ class AdminUsersController extends Controller
 
       $user = User::orderBy('created_at', 'desc')->first();
 
-      Session::flash('user_created', 'User' . $user->name . 'created Successfully');
+      Session::flash('user_created', 'User ' . $user->name . ' created Successfully');
 
       return redirect('admin/users'); 
 
@@ -90,7 +89,9 @@ class AdminUsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $role = Role::pluck('name', 'id')->all();
+        return view('admin.users.edit', compact('role', 'user'));
     }
 
     /**

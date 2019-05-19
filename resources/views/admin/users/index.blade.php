@@ -8,6 +8,8 @@
 <table class="table table-striped " style="color: #000;">
 
   
+
+
   <thead>
     <tr class="" style="background-color: #4268D6; color: #FFF4F5;">
       <th scope="col">#</th>
@@ -25,14 +27,14 @@
     @foreach($users as $i=>$user)
     <tr>
       <th scope="row">{{++$i}}</th>
-      <td><img src="http://placehold.it/60x30"></td>
+      <td><img height="50px" width="50px" src="{{$user->photo ? $user->photo->file : 'http://placehold.it/200x200'}}"></td>
       <td>{{$user->name}}</td>
       <td>{{$user->email}}</td>
       <td>{{ucfirst($user->role->name)}}</td>
       <td>{{$user->is_active == 1 ? 'Active' : 'Inactive'}}</td>
       <td>{{$user->created_at->diffForHumans()}}</td>
       <td>{{$user->updated_at->diffForHumans()}}</td>
-      <td><a href="#" class="btn btn-primary btn-icon-split">
+      <td><a href="{{route('users.edit', $user->id)}}" class="btn btn-primary btn-icon-split">
           <span class="icon text-white-50">
              <i class="fas fa-edit"></i>
           </span>

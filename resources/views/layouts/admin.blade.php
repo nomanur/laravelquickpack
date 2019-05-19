@@ -342,7 +342,7 @@
             
             <div class="session text-center">
               @if(Session::has('user_created'))
-                <p class="bg-primary" style="padding: 10px 20px; color: #fff; "><b>{{Session('user_created')}}</b></p>
+                <p class="rounded" style="padding: 10px 20px; color: #fff;background-color: #49beb7; "><b>{{Session('user_created')}}</b></p>
               @endif
             </div>            
             
