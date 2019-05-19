@@ -43,8 +43,8 @@ class AdminUsersController extends Controller
      */
     public function store(UsersRequest $request)
     {
-        
-       $input = $request->except('day', 'activator', 'password_confirm', 'gender');
+    
+       $input = $request->except('day', 'activator', 'password_confirm');
 
        $input['password'] = bcrypt($request->password);
       
@@ -58,6 +58,8 @@ class AdminUsersController extends Controller
 
            $input['photo_id']=$photo->id;
        }
+
+       $input['gender'] = $request['gender'];
 
       User::create($input);
 

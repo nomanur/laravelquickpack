@@ -28,6 +28,7 @@
     <tr>
       <th scope="row">{{++$i}}</th>
       <td><img height="50px" width="50px" src="{{$user->photo ? $user->photo->file : 'http://placehold.it/200x200'}}"></td>
+      
       <td>{{$user->name}}</td>
       <td>{{$user->email}}</td>
       <td>{{ucfirst($user->role->name)}}</td>
