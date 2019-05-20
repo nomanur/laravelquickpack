@@ -7,7 +7,24 @@
 
 <table class="table table-striped " style="color: #000;">
 
-  
+  @if(Session::has('user_created'))
+    @section('session')
+      <p class="rounded" style="padding: 10px 20px; color: #fff;background-color: #448FA3 "><b>{{Session('user_created')}}</b></p>
+    @endsection
+  @endif
+
+  @if(Session::has('user_updated'))
+    @section('session')
+      <p class="rounded" style="padding: 10px 20px; color: #fff; background-color: #023C40 "><b>{{Session('user_updated')}}</b></p>
+    @endsection
+  @endif
+
+
+ @if(Session::has('user_deleted'))
+  @section('session')
+      <p class="rounded" style="padding: 10px 20px; color: #fff; background-color: #D7263D; "><b>{{Session('user_deleted')}}</b></p>
+  @endsection
+ @endif
 
 
   <thead>
@@ -47,7 +64,7 @@
              {{(stripos($imp, $today) !== false) ? 'Holiday' : 'Working day'}}
           </td>
       <td>{{$user->created_at->diffForHumans()}}</td>
-      <td>{{$user->updated_at->diffForHumans()}}</td>
+      
       <td><a href="{{route('users.edit', $user->id)}}" class="btn btn-primary btn-icon-split">
           <span class="icon text-white-50">
              <i class="fas fa-edit"></i>

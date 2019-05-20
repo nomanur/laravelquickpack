@@ -119,13 +119,7 @@ class AdminUsersController extends Controller
                                 '6'=>'fri',
                           );
         $user = User::findOrFail($id);
-          $saved_working_days = array_flip(explode(',' , $user->day));
-        
-
-
-        
-
-
+        $saved_working_days = array_flip(explode(',' , $user->day));
         $role = Role::pluck('name', 'id')->all();
         return view('admin.users.edit', compact('role', 'user','working_days', 'saved_working_days'));
     }
@@ -139,8 +133,38 @@ class AdminUsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+         if (trim($request->password) == '') {
+                $input = $request->except('password', 'activator', 'password_confirm');
+            }else{
+                $input = $request->except('activator', 'password_confirm');
+                $input['password'] = bcrypt($request->password);
+            }
+
+            $days = $request->working_days;
+            $day = implode(',', $days);
+
+            $input['day'] = $day;
+
+            if ($file = $request->file('photo_id')) {
+
+                $name = time() . $file->getClientOriginalName();
+
+                $file->move('images', $name);
+
+                $photo = Photo::create(['file'=>$name]);
+
+                $input['photo_id'] = $photo->id;
+        }
+
+            $user->update($input);
+
+            Session::flash('user_updated', 'User '.$user->name.' updated successfully');
+
+            return redirect('/admin/users');
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -150,7 +174,18 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        if ($user->photo) {
+            unlink(public_path(). $user->photo->file);
+        }
+
+        Session::flash('user_deleted', 'User '. $user->name .' deleted successfully');
+        
+        $user->photo()->delete();
+        $user->delete();
+
+        return redirect('admin/users');
     }
 
    

@@ -5,6 +5,8 @@
 'message'=>'',
 ])
 @endsection
+
+
 @section('content')
 <div class="container">
 	<div class="row">
@@ -14,7 +16,7 @@
 		
 		<!-- form -->
 		<div class="col-lg-6">
-			{!! Form::model($user, ['method'=>'POST', 'action'=>['AdminUsersController@store', $user->id], 'files'=>true]) !!}
+			{!! Form::model($user, ['method'=>'PATCH', 'action'=>['AdminUsersController@update', $user->id], 'files'=>true]) !!}
 			@csrf
 			<div class="form-group">
 				{!! Form::label('name', 'Name') !!}
@@ -58,21 +60,40 @@
 				@include('inc.error', ['field' => 'password_confirm'])
 			</div>
 			<hr>
-
+			<div class="form-group">
+				{!! Form::label('day', 'Uncheck the offday') !!}
+				<hr>
 			@foreach ( $working_days as $i => $working_day )
 				{!! Form::checkbox( 'working_days[]',$working_day,in_array($i,$saved_working_days),['class' => '', 'id' => $working_day]) !!}
 				{!! Form::label($working_day,  ucfirst($working_day)) !!}
 			@endforeach
+		</div>
 			<hr>
-			<div class="form-group">
+			<!-- <div class="form-group">
 				{!! Form::checkbox('activator',null,null, ['class'=>'']) !!}
 				{!! Form::label('activator', 'Click here to agree') !!}
 				@include('inc.error', ['field' => 'activator'])
-			</div>
-			<div class="form-group">
-				{!! Form::submit('Create User', ['class'=>'btn btn-primary']) !!}
-			</div>
+			</div> -->
+
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="form-group">
+						{!! Form::submit('Update User', ['class'=>'btn btn-primary w-100']) !!}
+					</div>
+				</div>
 			{!! Form::close() !!}
+				<div class="col-lg-6">
+
+					{!! Form::model($user, ['method'=>'DELETE', 'action'=>['AdminUsersController@destroy', $user->id]]) !!}
+					
+					<div class="form-group">
+						{!! Form::submit('Delete User', ['class'=>'btn btn-danger w-100']) !!}
+					</div>
+						
+					{!! Form::close() !!}
+
+				</div>
+			</div>
 		</div>
 		
 
@@ -82,28 +103,18 @@
 
 		<!-- form -->
 		<div class="col-lg-3">
-			<!-- <div class="card" style="width: 15rem;">
-				<img src="http://placehold.it/400x200" class="card-img-top" alt="...">
-				<div class="card-body">
-					<h5 class="card-title">Tips</h5>
-					<p class="card-text">
-						<ul>
-							<li><b>Name</b> cannot be less than 2 characters</li>
-							<li><b>Password</b> cannot be less than 6 characters</li>
-						</ul>
-					</p>
-				</div>
-			</div> -->
-
-			@foreach($working_days as $i => $working_day)
-				
-				
-				
-				@if(in_array($i, $saved_working_days))
-						{{$i}}
-
-				@endif
-			@endforeach
+			<div class="card" style="width: 15rem;">
+					<img src="http://placehold.it/400x200" class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Tips</h5>
+						<p class="card-text">
+							<ul>
+								<li><b>Name</b> cannot be less than 2 characters</li>
+								<li><b>Password</b> cannot be less than 6 characters</li>
+							</ul>
+						</p>
+					</div>
+				</div>	
 		</div>
 	</div>
 </div>

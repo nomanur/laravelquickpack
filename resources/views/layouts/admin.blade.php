@@ -341,9 +341,7 @@
               <h1 class="h3 mb-0 text-gray-800">@yield('title')</h1>
             
             <div class="session text-center">
-              @if(Session::has('user_created'))
-                <p class="rounded" style="padding: 10px 20px; color: #fff;background-color: #49beb7; "><b>{{Session('user_created')}}</b></p>
-              @endif
+              @yield('session')
             </div>            
             
           @endif

@@ -8,6 +8,7 @@
 @endsection
 
 
+
 @section('content')
 <div class="container">
 	<div class="row">
@@ -63,7 +64,7 @@
 					{!! Form::label('', 'Uncheck the off Day') !!}
 					<br>
 					{!! Form::label('saturday', 'saturday') !!}
-					{!! Form::checkbox('day[sat]', 'sat', ['class'=>'form-control subject-list']) !!}
+					{!! Form::checkbox('day[sat]', 'sat', ['class'=>' subject-list']) !!}
 					{!! Form::label('sunday', 'sunday') !!}
 					{!! Form::checkbox('day[sun]', 'sun', ['class'=>'form-control subject-list']) !!}
 					{!! Form::label('monday', 'monday') !!}
