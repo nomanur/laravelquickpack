@@ -19,6 +19,7 @@ mix.styles([
     'resources/assets/css/libs/all.min.css',
     'resources/assets/css/libs/sb-admin-2.css',
     'resources/assets/css/libs/owl.carousel.css',
+    'resources/assets/css/libs/loginform.css',
 
 ], 'public/css/libs.css');
 

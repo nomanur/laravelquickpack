@@ -95,7 +95,7 @@ class AdminUsersController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -186,6 +186,11 @@ class AdminUsersController extends Controller
         $user->delete();
 
         return redirect('admin/users');
+    }
+
+
+    public function login(){
+        return view("login");
     }
 
    
