@@ -96,16 +96,11 @@
 			</div>
 		</div>
 		
-
-
-
-
-
 		<!-- form -->
 		<div class="col-lg-3">
 			<div class="card" style="width: 15rem;">
 					<img src="http://placehold.it/400x200" class="card-img-top" alt="...">
-					<div class="card-body">
+					<div class="card-body create-card">
 						<h5 class="card-title">Tips</h5>
 						<p class="card-text">
 							<ul>

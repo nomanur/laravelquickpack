@@ -1,4 +1,4 @@
-/* Base CSS */
+/* Base CSS
 .alignleft {
     float: left;
     margin-right: 15px;
@@ -28,4 +28,8 @@ h6 {
 body {
 
 }
-a:hover { text-decoration: none }
+a:hover { text-decoration: none } */
+
+.create-card{
+    background-color: #fff;
+}

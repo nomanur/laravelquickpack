@@ -20,6 +20,7 @@ mix.styles([
     'resources/assets/css/libs/sb-admin-2.css',
     'resources/assets/css/libs/owl.carousel.css',
     'resources/assets/css/libs/loginform.css',
+    'resources/assets/css/libs/profile.css',
 
 ], 'public/css/libs.css');
 

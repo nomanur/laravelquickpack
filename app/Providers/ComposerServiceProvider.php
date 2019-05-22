@@ -33,7 +33,8 @@ class ComposerServiceProvider extends ServiceProvider
 
         //for all views
         View::composer('*', function($view){
-
+           // $user = User::all();
+            //$view->with('user', $nuser);
         });
 
         //to send message to all the pages

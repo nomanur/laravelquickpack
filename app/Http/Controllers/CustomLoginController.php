@@ -34,4 +34,9 @@ class CustomLoginController extends Controller
     public function showHomePage(){
         return view('front/home');
     }
+
+    public function show($id)
+    {
+        return 'ok';
+    }
 }

@@ -139,7 +139,7 @@ class AdminUsersController extends Controller
                 $input = $request->except('password', 'activator', 'password_confirm');
             }else{
                 $input = $request->except('activator', 'password_confirm');
-                $input['password'] = bcrypt($request->password);
+                $input['password'] = $request->password;
             }
 
             $days = $request->working_days;
@@ -186,6 +186,14 @@ class AdminUsersController extends Controller
         $user->delete();
 
         return redirect('admin/users');
+    }
+
+    public function profile($id){
+
+        $user = User::findOrFail($id);
+        //$user = User::whereId($id)->first();
+        return view('admin/users/profile', compact('user'));
+
     }
    
 }
