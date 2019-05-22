@@ -33,10 +33,12 @@
 						<form method="POST" action="{{route('login')}}" accept-charset="UTF-8">
 							<!-- <form method="POST" action="http://laravelquickpack.nom/login" accept-charset="UTF-8"> -->
 							{!! csrf_field() !!}
-							
+							@if(Session::has('wrong_password'))
+								<p style="color: red;">{{Session('wrong_password')}}</p>
+							@endif
 							<div class="input-group form-group">
 								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user"></i></span>
+									<span class="input-group-text"><i class="fa fa-envelope"></i></span>
 								</div>
 								
 								<input id="email" type="text" class="form-control" name="email" placeholder="Email" autocomplete="email" autofocus>

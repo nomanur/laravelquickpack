@@ -36,7 +36,7 @@ class CustomLoginRequest extends FormRequest
         return [
             'email.required' => 'Email field is required',
             'email.email' => 'Email is not vaild',
-            'email.exists' => 'Email is not exist',
+            'email.exists' => 'Email is not exist, Please sign up',
             'password.required'=>'Password field is required',
             
         ];

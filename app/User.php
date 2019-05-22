@@ -48,6 +48,12 @@ class User extends Authenticatable
         return $this->belongsTo('App\Photo');
     }
 
+    public function setPasswordAttribute($password){
+        if (!empty($password)) {
+            $this->attributes['password'] = bcrypt($password);
+        }
+    }
+
     public function isAdmin(){
         if (Auth::user()->role->name == 'administrator' && Auth::user()->is_active == 1) {
             return true;

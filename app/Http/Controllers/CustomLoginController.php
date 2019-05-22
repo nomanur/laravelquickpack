@@ -15,7 +15,7 @@ class CustomLoginController extends Controller
         if (Auth::guest()) {
     	   return view('front/login');
         } else{
-            return redirect()->intended();
+            return redirect()->back();
         }
     }
 
@@ -24,8 +24,9 @@ class CustomLoginController extends Controller
     public function login(CustomLoginRequest $request){
 
     	if (Auth::attempt(['email'=>$request->email, 'password'=>$request->password] )) {
-    		return redirect('front/home');
+    		return redirect()->intended();
     	} else{
+            Session::flash('wrong_password', 'User id and password didnt match *');
     		return redirect()->back();
     	}
     }

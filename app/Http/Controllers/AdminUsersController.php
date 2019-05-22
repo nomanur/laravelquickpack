@@ -56,7 +56,7 @@ class AdminUsersController extends Controller
     
        $input = $request->except('activator', 'password_confirm');
       
-       $input['password'] = bcrypt($request->password);
+      // $input['password'] = bcrypt($request->password);
 
        $days = $request->day;
        $day = implode(',', $days);
@@ -187,11 +187,5 @@ class AdminUsersController extends Controller
 
         return redirect('admin/users');
     }
-
-
-    public function login(){
-        return view("login");
-    }
-
    
 }
