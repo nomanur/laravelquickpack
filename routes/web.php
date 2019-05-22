@@ -37,5 +37,7 @@ Route::group(['middleware' => ['auth','role']], function() {
 
 Route::group(['middleware'=>['auth']], function(){
 	Route::get('front/home', 'CustomLoginController@showHomePage');
+	Route::get('/mail', 'MailController@index');
+	Route::post('/mail', 'MailController@sendMail');
 });
 

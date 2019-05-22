@@ -21,6 +21,7 @@ mix.styles([
     'resources/assets/css/libs/owl.carousel.css',
     'resources/assets/css/libs/loginform.css',
     'resources/assets/css/libs/profile.css',
+    'resources/assets/css/libs/main.css',
 
 ], 'public/css/libs.css');
 
