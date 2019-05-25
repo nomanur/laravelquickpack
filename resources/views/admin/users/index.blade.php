@@ -7,6 +7,11 @@
 
 <table class="table table-striped " style="color: #000;">
 
+  @if(Session::has('own_delete'))
+    @section('session')
+      <p class="rounded bg bg-danger" style="padding: 10px 20px; color: #fff; "><b>{{Session('own_delete')}}</b></p>
+    @endsection
+  @endif
   @if(Session::has('user_created'))
     @section('session')
       <p class="rounded" style="padding: 10px 20px; color: #fff;background-color: #448FA3 "><b>{{Session('user_created')}}</b></p>

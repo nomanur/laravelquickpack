@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
-use App\Http\Requests\UsersRequest;
-use App\Http\Requests\UsersUpdateRequest;
 use App\Role;
 use App\User;
 use App\Photo;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Http\Requests\UsersRequest;
+use Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\UsersUpdateRequest;
+use Illuminate\Support\Facades\Validator;
 
 class AdminUsersController extends Controller
 {
@@ -140,9 +141,7 @@ class AdminUsersController extends Controller
         $data = $request->all();
         $user = User::findOrFail($id);
 
-
         //validate unique email and ignore the current email
-
 
          $validator = Validator::make($data, [
                 'email' => [
@@ -152,7 +151,7 @@ class AdminUsersController extends Controller
             ]);
             
         if ($validator->fails()) {
-            return redirect()->back()->with('unique', 'Email already exist. *');
+            return redirect()->back()->withErrors($validator);
         }
 
 
@@ -198,16 +197,18 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
+	    $user = User::findOrFail($id);
 
-        if ($user->photo) {
-            unlink(public_path(). $user->photo->file);
-        }
-
-        Session::flash('user_deleted', 'User '. $user->name .' deleted successfully');
-        
-        $user->photo()->delete();
-        $user->delete();
+    	if ($user->id !== Auth::user()->id) {
+	        if ($user->photo) {
+	            unlink(public_path(). $user->photo->file);
+	        }
+	        Session::flash('user_deleted', 'User '. $user->name .' deleted successfully');
+	        $user->photo()->delete();
+	        $user->delete();
+    	}else{
+    		return redirect('admin/users')->with('own_delete', 'You cant delete yourself ! Sorry');
+    	}
 
         return redirect('admin/users');
     }

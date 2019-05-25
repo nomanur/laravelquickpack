@@ -31,7 +31,7 @@
     				<p class="text-danger">
         				{{ session()->get('unique') }}
     				</p>
-@endif
+				@endif
 			</div>
 			<div class="form-group">
 				{!! Form::label('role_id', 'Roles') !!}

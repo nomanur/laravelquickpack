@@ -8,8 +8,15 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CustomLoginRequest;
 use Illuminate\Support\Facades\Session;
 
+
 class CustomLoginController extends Controller
 {
+
+     public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
+    
     	//show login
     public function showLoginPage(){
         if (Auth::guest()) {
