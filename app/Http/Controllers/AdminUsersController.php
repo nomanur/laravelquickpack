@@ -171,13 +171,20 @@ class AdminUsersController extends Controller
                 
 
             if ($file = $request->file('photo_id')) {
-
+                if ($user->photo) {
+                    unlink(public_path(). $user->photo->file);
+                }
                 $name = time() . $file->getClientOriginalName();
 
                 $file->move('images', $name);
-
-                $photo = Photo::create(['file'=>$name]);
-
+                //either this to update photo
+               /* if ($user->photo_id) {
+                    $user->photo()->delete();
+                }*/
+                //$photo = Photo::create(['file'=>$name]);
+                //or this 
+                $user->photo()->update(['file'=>$name]);
+                $photo = Photo::whereId($user->photo_id)->first();
                 $input['photo_id'] = $photo->id;
         }
 
