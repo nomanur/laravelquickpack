@@ -64,7 +64,7 @@
 					{!! Form::label('', 'Uncheck the off Day') !!}
 					<br>
 					{!! Form::label('saturday', 'saturday') !!}
-					{!! Form::checkbox('day[sat]', 'sat', ['class'=>' subject-list']) !!}
+					{!! Form::checkbox('day[sat]', 'sat',null, ['class'=>' subject-list']) !!}
 					{!! Form::label('sunday', 'sunday') !!}
 					{!! Form::checkbox('day[sun]', 'sun', ['class'=>'form-control subject-list']) !!}
 					{!! Form::label('monday', 'monday') !!}
@@ -76,7 +76,7 @@
 					{!! Form::label('thursday', 'thursday') !!}
 					{!! Form::checkbox('day[thu]', 'thu', ['class'=>'form-control subject-list']) !!}
 					{!! Form::label('friday', 'friday') !!}
-					{!! Form::checkbox('day[fri]', 'fri', ['class'=>'form-control subject-list']) !!}
+					{!! Form::checkbox('day[fri]', 'fri',null, ['class'=>' subject-list']) !!}
 				</div>
 				<hr>
 			<div class="form-group">

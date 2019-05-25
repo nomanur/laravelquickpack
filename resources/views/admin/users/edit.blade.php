@@ -68,8 +68,8 @@
 			<div class="form-group">
 				{!! Form::label('day', 'Uncheck the offday') !!}
 				<hr>
-			@foreach ( $working_days as $i => $working_day )
-				{!! Form::checkbox( 'working_days[]',$working_day,in_array($i,$saved_working_days),['class' => '', 'id' => $working_day]) !!}
+			@foreach ($working_days as $i => $working_day )
+				{!! Form::checkbox( 'working_days[]',$working_day,in_array($working_day,$saved_working_days),['class' => '', 'id' => $working_day]) !!}
 				{!! Form::label($working_day,  ucfirst($working_day)) !!}
 			@endforeach
 			@include('inc.error', ['field' => 'working_days'])

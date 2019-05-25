@@ -123,7 +123,7 @@ class AdminUsersController extends Controller
                                 '6'=>'fri',
                           );
         $user = User::findOrFail($id);
-        $saved_working_days = array_flip(explode(',' , $user->day));
+        $saved_working_days = (explode(',' , $user->day));
         $role = Role::pluck('name', 'id')->all();
         return view('admin.users.edit', compact('role', 'user','working_days', 'saved_working_days'));
     }
