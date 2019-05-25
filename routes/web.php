@@ -10,34 +10,35 @@
 |
 */
 
-use App\User;
+
 
 Route::get('/', function () {
-return view('welcome');
+return view('front/home');
 });
 
 
-Route::get('/admin',['middleware'=>['auth','role'], function(){
+Route::get('/admin',['middleware'=>['auth','role','verified'], function(){
 	return view('admin.index');
 }])->name('admin');
-Auth::routes();
 
-Route::group([], function() {
+Auth::routes(['verify' => true]);
+
+Route::group([''], function() {
 	//auth route
 	Route::get('login', 'CustomLoginController@showLoginPage')->name('login');
 	Route::post('login', 'CustomLoginController@login');
 	Route::get('logout', 'Auth\LoginController@logout');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::group(['middleware' => ['auth','role']], function() {
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::group(['middleware' => ['auth','role','verified']], function() {
 	Route::resource('admin/users', 'AdminUsersController');
 	Route::get('admin/users/{id}/profile', 'AdminUsersController@profile')->name('admin.profile');
 });
 
-Route::group(['middleware'=>['auth']], function(){
+Route::group(['middleware'=>['auth','verified']], function(){
 	Route::get('front/home', 'CustomLoginController@showHomePage');
-	Route::get('/mail', 'MailController@index');
+	Route::get('/mail', 'MailController@index')->name('mail');
 	Route::post('/mail', 'MailController@sendMail');
 });
 

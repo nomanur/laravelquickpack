@@ -6,6 +6,10 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('css/libs.css')}}">
 	<body>
+		
+		<div class="button" style="position: absolute; top: 5%; right: 5%;">
+			<a style="background-color: transparent;" class="btn btn-primary float-right"  href="{{route('logout')}}">Logout</a>
+		</div>
 		<div class="container">
 			<div class="d-flex justify-content-center h-100">	
 				
@@ -33,13 +37,15 @@
 								
 							<div class="input-group form-group">
 								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-key"></i></span>
+									<span class="input-group-text"><i class="far fa-address-card"></i></span>
+
 								</div>
 								<input type="text" name="subject" class="form-control{{$errors->has('subject')? ' is-invalid' : ''}}" placeholder="subject">
 							</div>
 							<div class="input-group form-group">
 								<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-key"></i></span>
+									<span class="input-group-text"><i class="fas fa-align-center"></i></span>
+									
 								</div>
 								<input type="textarea" name="message" class="form-control{{$errors->has('message')? ' is-invalid' : ''}}" placeholder="message" style="height: 100px;">
 							</div>

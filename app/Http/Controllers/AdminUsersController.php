@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use App\Http\Requests\UsersRequest;
+use App\Http\Requests\UsersUpdateRequest;
 use App\Role;
 use App\User;
 use App\Photo;
@@ -131,21 +134,42 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UsersUpdateRequest $request, $id)
     {
+
+        $data = $request->all();
         $user = User::findOrFail($id);
 
+
+        //validate unique email and ignore the current email
+
+
+         $validator = Validator::make($data, [
+                'email' => [
+                    'required',
+                    Rule::unique('users')->ignore($user->id),
+                ],
+            ]);
+            
+        if ($validator->fails()) {
+            return redirect()->back()->with('unique', 'Email already exist. *');
+        }
+
+
+        //if password doesn't exist
          if (trim($request->password) == '') {
                 $input = $request->except('password', 'activator', 'password_confirm');
             }else{
                 $input = $request->except('activator', 'password_confirm');
                 $input['password'] = $request->password;
             }
+            
 
-            $days = $request->working_days;
-            $day = implode(',', $days);
-
-            $input['day'] = $day;
+            //working days array
+                $days = $request->working_days;
+                $day = implode(',', $days);
+                $input['day'] = $day;
+                
 
             if ($file = $request->file('photo_id')) {
 

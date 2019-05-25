@@ -12,7 +12,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<nav class="navbar navbar-expand-lg navbar-light bg-light">
-							<a class="navbar-brand" href="#">Navbar</a>
+							<a class="navbar-brand" href="#">Blog</a>
 							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
 							</button>
@@ -25,8 +25,24 @@
 										<a class="nav-link" href="#">Blog</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="#">About</a>
+										<a class="nav-link" href="{{route('mail')}}">Contact</a>
 									</li>
+									@if(Auth::check())
+									<li class="nav-item">
+										<a class="nav-link" href="{{route('logout')}}">Logout</a>
+									</li>
+									@else
+									<li class="nav-item">
+										<a class="nav-link" href="{{route('login')}}">Login</a>
+									</li>
+								@endif
+									@if(Auth::user())
+										<a style="position: absolute; right: 0;" class="nav-link float-right">
+										Welcome ! {{Auth::user()->name}}
+										<img class="rounded-circle" width="30px" height="30px" src="{{Auth::user()->photo?Auth::user()->photo->file:'http://placehold.it/200x200'}}">
+										</a>
+									@endif
+								
 									
 								</ul>
 							</div>

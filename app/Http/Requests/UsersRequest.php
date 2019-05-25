@@ -33,6 +33,7 @@ class UsersRequest extends FormRequest
             'password'=>'required|min:6',
             'password_confirm'=>'required|same:password',
             'gender'=>'required',
+            'day'=>'required',
             'activator'=>'required',
         ];
     }

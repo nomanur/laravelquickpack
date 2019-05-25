@@ -27,6 +27,11 @@
 				{!! Form::label('email', 'email') !!}
 				{!! Form::text('email', null, ['class'=>'form-control']) !!}
 				@include('inc.error', ['field' => 'email'])
+				@if(session()->has('unique'))
+    				<p class="text-danger">
+        				{{ session()->get('unique') }}
+    				</p>
+@endif
 			</div>
 			<div class="form-group">
 				{!! Form::label('role_id', 'Roles') !!}
@@ -67,6 +72,9 @@
 				{!! Form::checkbox( 'working_days[]',$working_day,in_array($i,$saved_working_days),['class' => '', 'id' => $working_day]) !!}
 				{!! Form::label($working_day,  ucfirst($working_day)) !!}
 			@endforeach
+			@include('inc.error', ['field' => 'working_days'])
+			
+
 		</div>
 			<hr>
 			<!-- <div class="form-group">

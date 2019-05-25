@@ -33,6 +33,9 @@
 						<form method="POST" action="{{route('login')}}" accept-charset="UTF-8">
 							<!-- <form method="POST" action="http://laravelquickpack.nom/login" accept-charset="UTF-8"> -->
 							{!! csrf_field() !!}
+							@if(Session::has('danger'))
+								<p style="color: red;">{{Session('danger')}}</p>
+							@endif
 							@if(Session::has('wrong_password'))
 								<p style="color: red;">{{Session('wrong_password')}}</p>
 							@endif

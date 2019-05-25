@@ -7,6 +7,9 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('css/libs.css')}}">
 </head>
 <body>
+
+		<h2>Please Dont Reply</h2>
+
 		{{$e_message}}
 
 
