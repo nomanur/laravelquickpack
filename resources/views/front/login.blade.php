@@ -21,6 +21,17 @@
 				<div class="card" style="height: auto;">
 					<div class="card-header">
 						<h3>Sign In</h3>
+
+
+<div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div>
+
+
+
 						<div class="d-flex justify-content-end social_icon">
 							<span><i class="fab fa-facebook-square"></i></span>
 							<span><i class="fab fa-google-plus-square"></i></span>
@@ -75,6 +86,29 @@
 				</div>
 			</div>
 		</div>
+	
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '2272263139529736',
+      xfbml      : true,
+      version    : 'v3.3'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
 	
 		<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
 		<script type="text/javascript" src="{{asset('js/libs.js')}}"></script>

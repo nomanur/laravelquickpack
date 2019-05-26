@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Auth;
 use App\User;
 use Illuminate\Http\Request;
-use App\Http\Requests\CustomLoginRequest;
 use Illuminate\Support\Facades\Session;
+use Laravel\Socialite\Facades\Socialite;
+use App\Http\Requests\CustomLoginRequest;
 
 
 class CustomLoginController extends Controller
@@ -47,5 +48,37 @@ class CustomLoginController extends Controller
 
     public function showHomePage(){
         return view('front/home');
+    }
+
+
+
+     public function redirectToProvider()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function handleProviderCallback()
+    {
+        $userSocial = Socialite::driver('facebook')->user();
+       
+        $findUser = User::where('email', $userSocial->email)->first();
+
+        if ($findUser) {
+            Auth::login($findUser);
+
+            return redirect('');
+        }else{
+            $user = new User;
+            $user->name = $userSocial->name;
+            $user->email = $userSocial->email;
+            $user->password = bcrypt(12345678);
+            $user->save();
+
+            Auth::login($user);
+            return redirect('/');
+
+        }
+        
+        
     }
 }

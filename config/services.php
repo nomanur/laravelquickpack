@@ -44,4 +44,11 @@ return [
         ],
     ],
 
+
+    'facebook' => [
+        'client_id' => ('2272263139529736'),
+        'client_secret' => ('89649f3204815f105a892bc1f8bf2761'),
+        'redirect' => 'https://laravelquickpack.nom/login/facebook/callback',
+    ],
+
 ];

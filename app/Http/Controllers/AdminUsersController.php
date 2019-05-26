@@ -125,7 +125,7 @@ class AdminUsersController extends Controller
         $user = User::findOrFail($id);
         $saved_working_days = (explode(',' , $user->day));
         $role = Role::pluck('name', 'id')->all();
-        return view('admin.users.edit', compact('role', 'user','working_days', 'saved_working_days'));
+        return view('admin.users.edit', compact('role', 'user', 'working_days', 'saved_working_days'));
     }
 
     /**
@@ -137,7 +137,6 @@ class AdminUsersController extends Controller
      */
     public function update(UsersUpdateRequest $request, $id)
     {
-
         $data = $request->all();
         $user = User::findOrFail($id);
 
@@ -154,7 +153,6 @@ class AdminUsersController extends Controller
             return redirect()->back()->withErrors($validator);
         }
 
-
         //if password doesn't exist
          if (trim($request->password) == '') {
                 $input = $request->except('password', 'activator', 'password_confirm');
@@ -163,19 +161,16 @@ class AdminUsersController extends Controller
                 $input['password'] = $request->password;
             }
             
-
             //working days array
                 $days = $request->working_days;
                 $day = implode(',', $days);
                 $input['day'] = $day;
                 
-
             if ($file = $request->file('photo_id')) {
                 if ($user->photo) {
                     unlink(public_path(). $user->photo->file);
                 }
                 $name = time() . $file->getClientOriginalName();
-
                 $file->move('images', $name);
                 //either this to update photo
                /* if ($user->photo_id) {
@@ -184,7 +179,8 @@ class AdminUsersController extends Controller
                 //$photo = Photo::create(['file'=>$name]);
                 //or this 
                 $user->photo()->update(['file'=>$name]);
-                $photo = Photo::whereId($user->photo_id)->first();
+               // $photo = Photo::whereId($user->photo_id)->first();
+                $photo = Photo::findOrFail($user->photo_id);
                 $input['photo_id'] = $photo->id;
         }
 
@@ -221,11 +217,8 @@ class AdminUsersController extends Controller
     }
 
     public function profile($id){
-
         $user = User::findOrFail($id);
         //$user = User::whereId($id)->first();
         return view('admin/users/profile', compact('user'));
-
     }
-   
 }

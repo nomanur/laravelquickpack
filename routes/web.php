@@ -42,3 +42,5 @@ Route::group(['middleware'=>['auth','verified']], function(){
 	Route::post('/mail', 'MailController@sendMail');
 });
 
+Route::get('login/facebook', 'CustomLoginController@redirectToProvider');
+Route::get('login/facebook/callback', 'CustomLoginController@handleProviderCallback');
