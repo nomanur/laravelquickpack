@@ -52,26 +52,26 @@ class CustomLoginController extends Controller
 
 
 
-     public function redirectToProvider()
+     public function redirectToProvider($service)
     {
-        return Socialite::driver('facebook')->redirect();
+        return Socialite::driver($service)->redirect();
     }
 
-    public function handleProviderCallback()
+    public function handleProviderCallback($service)
     {
-        $userSocial = Socialite::driver('facebook')->user();
+        $userSocial = Socialite::driver($service)->user();
        
         $findUser = User::where('email', $userSocial->email)->first();
 
         if ($findUser) {
             Auth::login($findUser);
 
-            return redirect('');
+            return redirect('/');
         }else{
             $user = new User;
             $user->name = $userSocial->name;
             $user->email = $userSocial->email;
-            $user->password = bcrypt(12345678);
+            $user->password = 12345678;
             $user->save();
 
             Auth::login($user);

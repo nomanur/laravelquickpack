@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Role;
 use App\User;
 use App\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Requests\UsersRequest;
-use Auth;
+use App\Http\Requests\SearchRequest;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\UsersUpdateRequest;
@@ -221,4 +222,15 @@ class AdminUsersController extends Controller
         //$user = User::whereId($id)->first();
         return view('admin/users/profile', compact('user'));
     }
+
+    public function search(SearchRequest $request)
+    {
+        
+        $searchTerm = $request->searchTerm;
+
+        $user = User::where('name', 'LIKE','%'.$searchTerm.'%')->get();
+
+       return view('admin/search/search', compact('user'));
+    }
 }
+

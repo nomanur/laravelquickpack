@@ -16,24 +16,19 @@
 	</head>
 	<body>
 		<div class="container">
-			<div class="d-flex justify-content-center h-100">	
+			<div class="d-flex justify-content-center h-100">
 				
 				<div class="card" style="height: auto;">
 					<div class="card-header">
 						<h3>Sign In</h3>
-
-
-<div
-  class="fb-like"
-  data-share="true"
-  data-width="450"
-  data-show-faces="true">
-</div>
-
-
-
+						<div
+							class="fb-like"
+							data-share="true"
+							data-width="450"
+							data-show-faces="true">
+						</div>
 						<div class="d-flex justify-content-end social_icon">
-							<span><i class="fab fa-facebook-square"></i></span>
+							<a href="{{url('login/facebook')}}"><span><i class="fab fa-facebook-square"></i></span></a>
 							<span><i class="fab fa-google-plus-square"></i></span>
 							<span><i class="fab fa-twitter-square"></i></span>
 						</div>
@@ -45,10 +40,10 @@
 							<!-- <form method="POST" action="http://laravelquickpack.nom/login" accept-charset="UTF-8"> -->
 							{!! csrf_field() !!}
 							@if(Session::has('danger'))
-								<p style="color: red;">{{Session('danger')}}</p>
+							<p style="color: red;">{{Session('danger')}}</p>
 							@endif
 							@if(Session::has('wrong_password'))
-								<p style="color: red;">{{Session('wrong_password')}}</p>
+							<p style="color: red;">{{Session('wrong_password')}}</p>
 							@endif
 							<div class="input-group form-group">
 								<div class="input-group-prepend">
@@ -57,14 +52,14 @@
 								
 								<input id="email" type="text" class="form-control" name="email" placeholder="Email" autocomplete="email" autofocus>
 							</div>
-								@include('inc.error', ['field' => 'email'])
+							@include('inc.error', ['field' => 'email'])
 							<div class="input-group form-group">
 								<div class="input-group-prepend">
 									<span class="input-group-text"><i class="fas fa-key"></i></span>
 								</div>
 								<input type="password" name="password" class="form-control" placeholder="password">
 							</div>
-								@include('inc.error', ['field' => 'password'])
+							@include('inc.error', ['field' => 'password'])
 							<div class="row align-items-center remember">
 								<input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>Remember Me
 							</div>
@@ -78,7 +73,7 @@
 							Don't have an account?<a href="#">Sign Up</a>
 						</div>
 						<div class="d-flex justify-content-center">
-							 @if (Route::has('password.request'))
+							@if (Route::has('password.request'))
 							<a href="{{ route('password.request') }}">Forgot your password?</a>
 							@endif
 						</div>
@@ -86,30 +81,25 @@
 				</div>
 			</div>
 		</div>
-	
-
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '2272263139529736',
-      xfbml      : true,
-      version    : 'v3.3'
-    });
-    FB.AppEvents.logPageView();
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-
-
-
-	
+		
+		<script>
+		window.fbAsyncInit = function() {
+		FB.init({
+		appId      : '2272263139529736',
+		xfbml      : true,
+		version    : 'v3.3'
+		});
+		FB.AppEvents.logPageView();
+		};
+		(function(d, s, id){
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) {return;}
+		js = d.createElement(s); js.id = id;
+		js.src = "https://connect.facebook.net/en_US/sdk.js";
+		fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+		</script>
+		
 		<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
 		<script type="text/javascript" src="{{asset('js/libs.js')}}"></script>
 	</body>
