@@ -11,22 +11,23 @@
   			<h2>No user Found</h2>
 		</div>
 		@else
-		@foreach($user as $searchUser)
-		
 		<div class="container">
 			<div class="row">
+		@foreach($user as $searchUser)
 				<div class="col-md-6 offset-md-3 text-center">
+		
 					<a href="{{route('admin.profile', $searchUser->id)}}"><h2>Name : {{$searchUser->name}}</h2></a>
-					<img class="mt-4" height="200px" width="300px" src="{{$searchUser->photo->file}}">
+					<img class="mt-4" height="200px" width="300px" src="{{isset($searchUser->photo->file)?$searchUser->photo->file:'http://placehold.it/200x300'}}">
 					<h4 class="mt-4">Working Day: {{$searchUser->day}}</h4>
+					<hr>
 				</div>
+		@endforeach
 			</div>
 		</div>
 		
 		
 		
 		
-		@endforeach
 		@endif
 		
 		<script type="text/javascript" src="{{asset('js/app.js')}}"></script>

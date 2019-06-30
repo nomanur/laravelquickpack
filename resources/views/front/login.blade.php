@@ -39,6 +39,9 @@
 						<form method="POST" action="{{route('login')}}" accept-charset="UTF-8">
 							<!-- <form method="POST" action="http://laravelquickpack.nom/login" accept-charset="UTF-8"> -->
 							{!! csrf_field() !!}
+							@if(Session::has('registration_success'))
+							<p style="color: #ddd;">{{Session('registration_success')}}</p>
+							@endif
 							@if(Session::has('danger'))
 							<p style="color: red;">{{Session('danger')}}</p>
 							@endif
@@ -70,7 +73,7 @@
 					</div>
 					<div class="card-footer">
 						<div class="d-flex justify-content-center links">
-							Don't have an account?<a href="#">Sign Up</a>
+							Don't have an account?<a href="{{route('register')}}">Sign Up</a>
 						</div>
 						<div class="d-flex justify-content-center">
 							@if (Route::has('password.request'))
