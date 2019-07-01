@@ -16,25 +16,32 @@
 	</head>
 
 	<style type="text/css">
-		html, body{
-			background: none;
+		.reg-form {
+			color: #ddd;
 		}
+
+
 	</style>
 	<body>
-		
+		<div class="reg-form">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-offset-3 col-lg-6">
+				<div class="col-lg-3 mx-auto">
+					<h2>Registration Form</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-6 mx-auto">
 							{!! Form::open(['method'=>'POST', 'action'=>'CustomRegisterController@store']) !!}
 							@csrf
 							<div class="form-group">
 								{!! Form::label('name', 'Name') !!}
-								{!! Form::text('name', null, ['class'=>'form-control']) !!}
+								{!! Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'Name']) !!}
 								@include('inc.error', ['field' => 'name'])
 							</div>
 							<div class="form-group">
 								{!! Form::label('email', 'Email') !!}
-								{!! Form::text('email', null, ['class'=>'form-control']) !!}
+								{!! Form::text('email', null, ['class'=>'form-control', 'placeholder'=>'Email']) !!}
 								@include('inc.error', ['field' => 'email'])
 							</div>
 							
@@ -46,7 +53,7 @@
 							</div>
 							<div class="form-group">
 								{!! Form::label('password', 'Password') !!}
-								{!! Form::password('password', ['class'=>'form-control']) !!}
+								{!! Form::password('password', ['class'=>'form-control','placeholder'=>'Password']) !!}
 								@include('inc.error', ['field' => 'password'])
 							</div>
 							<div class="form-group">
@@ -61,6 +68,7 @@
 						{!! Form::close() !!}
 				</div>
 			</div>
+		</div>
 		</div>
 		
 		<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
