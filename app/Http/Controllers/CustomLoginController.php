@@ -30,8 +30,17 @@ class CustomLoginController extends Controller
 
     //chekc auth and redirect
     public function login(CustomLoginRequest $request){
+
+        $login_type = filter_var($request->input('email'), FILTER_VALIDATE_EMAIL ) 
+        ? 'email' 
+        : 'name';
+
+        $request->merge([
+            $login_type => $request->input('email')
+        ]);
+
         
-    	if (Auth::attempt(['email'=>$request->email, 'password'=>$request->password] )) {
+    	if (Auth::attempt($request->only($login_type, 'password'))) {
             
          if (Auth::user()->hasVerifiedEmail()) {
     		      return redirect()->intended();

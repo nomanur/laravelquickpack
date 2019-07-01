@@ -24,7 +24,7 @@ class CustomRegisterController extends Controller
     public function store(CustomRegistrationRequest $request)
     {
 
-
+    	 
     	/*return $data = $request->all();
 
 		$user = User::create([
@@ -41,7 +41,7 @@ class CustomRegisterController extends Controller
 
     	Session::flash('registration_success', 'You are successfully registered please login');
 
-    	if (Auth::attempt(['email'=>$request->email, 'password'=>$request->password] )) {
+    	if (Auth::attempt(['email'=>$request->email, 'password'=>$request->password] ))  {
             
          if (Auth::user()->hasVerifiedEmail()) {
     		      return redirect()->intended();

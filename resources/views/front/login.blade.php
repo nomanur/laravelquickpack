@@ -53,7 +53,7 @@
 									<span class="input-group-text"><i class="fa fa-envelope"></i></span>
 								</div>
 								
-								<input id="email" type="text" class="form-control" name="email" placeholder="Email" autocomplete="email" autofocus>
+								<input id="email" type="text" class="form-control" name="email" placeholder="Email/Username" autocomplete="email" autofocus>
 							</div>
 							@include('inc.error', ['field' => 'email'])
 							<div class="input-group form-group">
